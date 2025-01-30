@@ -4,5 +4,11 @@ const airURL =
 export const AirApi = createApi({
   reducerPath: "airApi",
   baseQuery: fetchBaseQuery({ baseUrl: airURL }),
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    getAllRooms: builder.query({
+      query: () => airURL,
+    }),
+  }),
 });
+
+export const { useGetAllRoomsQuery } = AirApi;

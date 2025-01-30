@@ -1,47 +1,110 @@
-import { Home } from "@mui/icons-material";
 import Logo from "../assets/react.svg";
 import {
   AppBar,
   Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
+  Tabs,
+  Tab,
   Toolbar,
   Typography,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+  Divider,
 } from "@mui/material";
+import { navLinks } from "../Constants/NavLinks";
+import { useState } from "react";
+import { Menu } from "@mui/icons-material";
 
 function Navbar() {
+  //States
+  const [navbar, setnavbar] = useState(false);
+  //Nav Button Functions
+  const handleOpenDrawer = () => {
+    setnavbar(true);
+  };
+  const handleCloseDrawer = () => {
+    setnavbar(false);
+  };
+
   return (
-    <AppBar component="nav" position="fixed">
-      <Toolbar>
-        <Box>
-          <Typography variant="h5" color="initial">
-            <img src={Logo} alt="Logo" />
-          </Typography>
-        </Box>
-        <Box display={"flex"}>
-          <List>
-            <ListItem
-              disablePadding
-              sx={{
-                border: "1px solid white",
-                marginX: "2px",
-                borderRadius: "5px",
-              }}
+    <Box>
+      <AppBar component="nav" position="fixed">
+        <Toolbar>
+          <Box
+            sx={{
+              marginLeft: "2px",
+              color: "white",
+              display: { xs: "flex", md: "none" },
+            }}
+          >
+            <IconButton
+              aria-label="Icon Button"
+              color="inherit"
+              onClick={handleOpenDrawer}
             >
-              <ListItemButton>
-                <ListItemIcon>
-                  <Home />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItemButton>
-            </ListItem>
+              <Menu />
+            </IconButton>
+          </Box>
+          <Box display={"flex"} marginX={1}>
+            <Typography variant="h5" color="initial" marginX={2}>
+              <img src={Logo} alt="Logo" />
+            </Typography>
+            <Typography variant="h5" alignContent={"center"} color="inherit">
+              Sleep-Up
+            </Typography>
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Tabs textColor="inherit" indicatorColor="secondary">
+              {navLinks.map((redirect) => (
+                <Tab
+                  sx={{ borderRadius: "0.5rem" }}
+                  label={redirect.navTitle}
+                  href={redirect.href}
+                  key={redirect.id}
+                />
+              ))}
+            </Tabs>
+          </Box>
+          <Button
+            sx={{ marginLeft: "auto", display: { xs: "none", md: "flex" } }}
+            variant="contained"
+          >
+            Login
+          </Button>
+          <Button
+            sx={{ marginLeft: "10px", display: { xs: "none", md: "flex" } }}
+            variant="contained"
+          >
+            SignUp
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Drawer anchor="left" open={navbar} onClose={handleCloseDrawer}>
+        <Box sx={{ width: "70vw" }}>
+          <List>
+            {navLinks.map((direct) => (
+              <ListItem key={direct.id} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={direct.navTitle} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            <Divider />
+
+            <ListItemButton>
+              <ListItemText primary="Login" />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="SignUp" />
+            </ListItemButton>
           </List>
         </Box>
-      </Toolbar>
-    </AppBar>
+      </Drawer>
+    </Box>
   );
 }
 
