@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import WelcomePage from "./Pages/WelcomePage";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+
 import LoginPage from "./Pages/Auth/LoginPage";
 import SignUpPage from "./Pages/Auth/SignUpPage";
 import PageNotFound from "./Pages/PageNotFound";
@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import LightTheme from "./assets/Theme/LightTheme";
 import DarkTheme from "./assets/Theme/DarkTheme";
 import { ThemeProvider } from "@mui/material";
+import OneRoomPage from "./Pages/OneRoomPage";
 
 function App() {
   type ThemeMode = "light" | "dark";
@@ -36,6 +37,7 @@ function App() {
             }
           >
             <Route index path="/" element={<WelcomePage />} />
+            <Route index path="/room/:id}" element={<OneRoomPage />} />
           </Route>
           {/**=================== */}
           <Route index path="/auth/login" element={<LoginPage />} />
@@ -43,7 +45,6 @@ function App() {
           {/**=================== */}
           <Route index path="*" element={<PageNotFound />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

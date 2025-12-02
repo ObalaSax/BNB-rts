@@ -4,7 +4,6 @@ import { createTheme } from "@mui/material/styles";
 const BnbColor1 = "#473472";
 const BnbColor2 = "#53629E";
 const BnbColor3 = "#87BAC3";
-const BnbColor4 = "#D6F4ED";
 
 const tezzaPalette = {
   // --- Primary Color (The Main Brand Color: Red) ---
@@ -27,13 +26,14 @@ const tezzaPalette = {
   },
 
   background: {
-    default: BnbColor3,
-    paper: "#464646ff",
+    default: "#ffffff",
+    paper: "#f1f1f1ff",
+    extra: BnbColor3,
   },
 
   // --- Text Colors ---
   text: {
-    primary: BnbColor4,
+    primary: "#1A1A1A",
     secondary: "#D3D3D3",
   },
 };

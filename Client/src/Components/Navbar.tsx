@@ -14,6 +14,7 @@ import { Outlet } from "react-router-dom";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import MenuIcon from "@mui/icons-material/Menu";
+import Footer from "./Footer";
 interface NavbarProps {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
@@ -60,6 +61,7 @@ function Navbar({ isDarkMode, toggleDarkMode }: NavbarProps) {
         ></Drawer>
       </AppBar>
       <Outlet />
+      <Footer />
     </Box>
   );
 }
